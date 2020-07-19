@@ -27,7 +27,7 @@
                             <ul>
                                 {this.state.tasks.map((task, i) =>
                                     <li key={i}>
-                                        {task} <button onClick={this.deletetask}>X</button>
+                                        {task} <button onClick={()=>this.deletetask(i)}>X</button>
                                     </li>
                                 )}
                             </ul>
@@ -54,9 +54,13 @@
                 }
 
                 deletetask = (i) => {
-                    this.setState(state => ({
-                        tasks: state.tasks.splice(i,1)
-                    }) )
+                    this.setState(state => {
+                        const tasks = [...this.state.tasks]
+                        tasks.splice(i,1)
+                        return {
+                            tasks: tasks
+                        }
+                    } )
                 }
             }
 
